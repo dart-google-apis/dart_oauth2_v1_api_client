@@ -15,7 +15,6 @@ class UserinfoResource_ extends Resource {
    * [optParams] - Additional query parameters
    */
   async.Future<Userinfo> get({core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "oauth2/v1/userinfo";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -30,16 +29,13 @@ class UserinfoResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new Userinfo.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new Userinfo.fromJson(data));
   }
 }
 
@@ -64,7 +60,6 @@ class UserinfoV2MeResource_ extends Resource {
    * [optParams] - Additional query parameters
    */
   async.Future<Userinfo> get({core.Map optParams}) {
-    var completer = new async.Completer();
     var url = "userinfo/v2/me";
     var urlParams = new core.Map();
     var queryParams = new core.Map();
@@ -79,16 +74,13 @@ class UserinfoV2MeResource_ extends Resource {
     }
 
     if (!paramErrors.isEmpty) {
-      completer.completeError(new core.ArgumentError(paramErrors.join(" / ")));
-      return completer.future;
+      throw new core.ArgumentError(paramErrors.join(" / "));
     }
 
     var response;
     response = _client.request(url, "GET", urlParams: urlParams, queryParams: queryParams);
-    response
-      .then((data) => completer.complete(new Userinfo.fromJson(data)))
-      .catchError((e) { completer.completeError(e); return true; });
-    return completer.future;
+    return response
+      .then((data) => new Userinfo.fromJson(data));
   }
 }
 
